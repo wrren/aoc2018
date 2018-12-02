@@ -13,6 +13,13 @@ func usage() {
 	os.Exit(1)
 }
 
+func fatal(err error) {
+	if err != nil {
+		fmt.Printf("Error: %s", err.Error())
+		os.Exit(1)
+	}
+}
+
 func main() {
 	if len(os.Args) < 3 {
 		usage()
@@ -27,7 +34,9 @@ func main() {
 	if os.Args[1] == "part1" {
 		fmt.Printf("Checksum: %d", part1(ids))
 	} else if os.Args[1] == "part2" {
-		fmt.Printf("Common Letters: %s", part2(ids))
+		result, err := part2(ids)
+		fatal(err)
+		fmt.Printf("Common Letters: %s", result)
 	} else {
 		usage()
 	}

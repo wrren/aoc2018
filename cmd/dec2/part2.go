@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strings"
@@ -51,7 +52,7 @@ func (id ID) Common(other ID) string {
 	return builder.String()
 }
 
-func part2(idStrings []string) string {
+func part2(idStrings []string) (string, error) {
 	ids := make([]ID, 0, len(idStrings))
 	for _, id := range idStrings {
 		ids = append(ids, NewID(id))
@@ -64,11 +65,11 @@ func part2(idStrings []string) string {
 		for j := i + 1; j < len(ids); j++ {
 			quick, deep := ids[i].Match(ids[j])
 			if quick && deep {
-				return ids[i].Common(ids[j])
+				return ids[i].Common(ids[j]), nil
 			} else if !quick {
 				break
 			}
 		}
 	}
-	return ""
+	return "", fmt.Errorf("Failed to find matching IDs")
 }
