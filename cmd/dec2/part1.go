@@ -1,30 +1,29 @@
 package main
 
-func checksum(id string, twos, threes *int) {
+type counter map[int]int
+
+func checksum(id string, counter *counter) {
 	characters := map[rune]int{}
 	for _, r := range id {
 		characters[r] = characters[r] + 1
 	}
-	var sawTwo, sawThree bool
-	for _, count := range characters {
-		if sawTwo && sawThree {
-			return
-		}
-		if count == 2 && sawTwo == false {
-			*twos = *twos + 1
-			sawTwo = true
-		}
-		if count == 3 && sawThree == false {
-			*threes = *threes + 1
-			sawThree = true
+	for k, _ := range *counter {
+		for _, count := range characters {
+			if count == k {
+				(*counter)[k] = (*counter)[k] + 1
+				break
+			}
 		}
 	}
 }
 
 func part1(ids []string) int {
-	var twos, threes int
-	for _, id := range ids {
-		checksum(id, &twos, &threes)
+	counter := counter{
+		2: 0,
+		3: 0,
 	}
-	return twos * threes
+	for _, id := range ids {
+		checksum(id, &counter)
+	}
+	return counter[2] * counter[3]
 }

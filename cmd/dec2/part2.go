@@ -36,7 +36,7 @@ func (id ID) Match(other ID) (bool, bool) {
 				differences = differences + 1
 			}
 		}
-		return true, true
+		return true, differences == 1
 	}
 	return false, false
 }
