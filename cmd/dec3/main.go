@@ -9,7 +9,7 @@ import (
 
 func usage() {
 	fmt.Println("usage:")
-	fmt.Println("dec2 <part1|part2> <input_file>")
+	fmt.Println("dec3 <part1|part2> <input_file>")
 	os.Exit(1)
 }
 
