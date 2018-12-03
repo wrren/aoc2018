@@ -12,7 +12,7 @@ func part1(in []string) (int, error) {
 
 	overlap := 0
 	for _, v := range overlay {
-		if v > 1 {
+		if v > SingleClaim {
 			overlap = overlap + 1
 		}
 	}
