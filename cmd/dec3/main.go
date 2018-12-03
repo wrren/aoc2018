@@ -13,10 +13,7 @@ func main() {
 	}
 
 	claims, err := util.ReadStrings(os.Args[2])
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
+	util.Fatal(err)
 
 	if os.Args[1] == "part1" {
 		overlap, err := part1(claims)

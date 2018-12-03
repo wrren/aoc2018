@@ -12,10 +12,7 @@ func main() {
 		util.Usage()
 	}
 	changes, err := util.ReadIntegers(os.Args[2])
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
-	}
+	util.Fatal(err)
 
 	if os.Args[1] == "part1" {
 		result, err := part1(changes)
