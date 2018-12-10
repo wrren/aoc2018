@@ -21,7 +21,7 @@ func (m MarbleGame) CurrentValue() int {
 }
 
 func (m MarbleGame) ToSlice() []int {
-	slice := make([]int, 1)
+	slice := make([]int, 1, m.Marbles.Len())
 	slice[0] = m.Marbles.Value.(int)
 
 	current := m.Marbles.Next()
